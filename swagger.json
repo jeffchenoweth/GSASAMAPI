@@ -515,7 +515,7 @@
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "type": "ref"
+            "type": "string"
           },
           {
             "in": "query",
@@ -1148,7 +1148,7 @@
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "type": "ref"
+            "type": "string"
           },
           {
             "in": "query",
@@ -1831,7 +1831,7 @@
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "type": "ref"
+            "type": "string"
           },
           {
             "in": "query",
@@ -2464,7 +2464,7 @@
             "in": "query",
             "name": "sortOrder",
             "required": false,
-            "type": "ref"
+            "type": "string"
           },
           {
             "in": "query",
