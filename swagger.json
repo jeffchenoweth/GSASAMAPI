@@ -1,0 +1,4036 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Swagger Documentation for Entity Management Rest API",
+    "license": {
+      "name": "GSA"
+    },
+    "title": "Entity Management Rest API",
+    "version": "0.1.0"
+  },
+  "basePath": "/api-alpha.sam.gov/",
+  "paths": {
+    "/sam/v1/emr-data": {
+      "get": {
+        "produces": [
+          "application/hal+json"
+        ],
+        "parameters": [
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "ueiDUNS",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved information",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller"
+        ],
+        "operationId": "getRepsAndCertsKeyUsingGET",
+        "summary": " Get EMR Key and EMR value based on duns"
+      }
+    },
+    "/sam/v1/entity-file": {
+      "get": {
+        "parameters": [
+          {
+            "description": "token",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "entity-management-extract-controller"
+        ],
+        "operationId": "getFileFromS3UsingGET",
+        "summary": "getFileFromS3"
+      },
+      "post": {
+        "parameters": [
+          {
+            "description": "token",
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "tags": [
+          "entity-management-extract-controller"
+        ],
+        "operationId": "getFileFromS3UsingPOST",
+        "summary": "getFileFromS3"
+      }
+    },
+    "/sam/v1/entity-management": {
+      "get": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "expirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrictState",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "samExtractCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable emailId values are Yes/No",
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cityStateZipCongFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller"
+        ],
+        "operationId": "getEntityManagementDataUsingGET",
+        "summary": " get Entity Management Details"
+      },
+      "post": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "expirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrictState",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "samExtractCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable emailId values are Yes/No",
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "cityStateZipCongFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller"
+        ],
+        "operationId": "getEntityManagementDataUsingPOST",
+        "summary": " get Entity Management Details"
+      }
+    },
+    "/sam/v1/picker-data": {
+      "get": {
+        "produces": [
+          "application/hal+json"
+        ],
+        "parameters": [
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "10",
+            "description": "size",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "fieldName",
+            "in": "query",
+            "name": "fieldName",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "text",
+            "in": "query",
+            "name": "text",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Provide the iPlanetDirectoryPro cookie from your application",
+            "in": "header",
+            "name": "X-Auth-Token",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list",
+            "schema": {
+              "type": "string"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller"
+        ],
+        "operationId": "getEntityAutoSuggestDataUsingGET",
+        "summary": " Get Entity Auto Suggest Info"
+      }
+    },
+    "/sam/v2/entity-management": {
+      "get": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "SAM Registered",
+            "in": "query",
+            "name": "samRegistered",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationExpirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "ueiCreationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "registrationStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller-v-2"
+        ],
+        "operationId": "getEntityManagementDataUsingGET_1",
+        "summary": " get Entity Management Details"
+      },
+      "post": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "SAM Registered",
+            "in": "query",
+            "name": "samRegistered",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationExpirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "ueiCreationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "registrationStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller-v-2"
+        ],
+        "operationId": "getEntityManagementDataUsingPOST_1",
+        "summary": " get Entity Management Details"
+      }
+    },
+    "/sam/v3/entity-management": {
+      "get": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "SAM Registered",
+            "in": "query",
+            "name": "samRegistered",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationExpirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "ueiCreationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "registrationStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller-v-3"
+        ],
+        "operationId": "getEntityManagementDataUsingGET_2",
+        "summary": " get Entity Management Details"
+      },
+      "post": {
+        "parameters": [
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "activationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The exact 5 character value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "cageCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "dbaName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Y or N or null",
+            "in": "query",
+            "name": "debtSubjectToOffset",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "9 character value",
+            "in": "query",
+            "name": "dodaac",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier DUNS- 9 digit value; a maximum of up to 100 values can be sent",
+            "in": "query",
+            "name": "ueiDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Unique Entity Identifier SAM- 12 digit value; a maximum of up to 100 values can be sent (This will replace ueiDUNS)",
+            "in": "query",
+            "name": "ueiSAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT indicator aka dunsPlus4",
+            "in": "query",
+            "name": "entityEFTIndicator",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code or null",
+            "in": "query",
+            "name": "entityStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Entity Structure",
+            "in": "query",
+            "name": "entityStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "D or null",
+            "in": "query",
+            "name": "exclusionStatusFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Partial or Complete value",
+            "in": "query",
+            "name": "legalBusinessName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 digit NAICS; accepts multiple NAICS",
+            "in": "query",
+            "name": "primaryNaics",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "purposeOfRegistrationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Purpose Of Registration",
+            "in": "query",
+            "name": "purposeOfRegistrationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "updateDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "City name",
+            "in": "query",
+            "name": "physicalAddressCity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 characters",
+            "in": "query",
+            "name": "physicalAddressCongressionalDistrict",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 character code",
+            "in": "query",
+            "name": "physicalAddressCountryCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 character code",
+            "in": "query",
+            "name": "physicalAddressProvinceOrStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "5 digit zip code",
+            "in": "query",
+            "name": "physicalAddressZipPostalCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character business type codes",
+            "in": "query",
+            "name": "businessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of business type code",
+            "in": "query",
+            "name": "businessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character entity type codes",
+            "in": "query",
+            "name": "entityType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character organization structure codes",
+            "in": "query",
+            "name": "organizationStructureCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Organization structure description",
+            "in": "query",
+            "name": "organizationStructureDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "2 Character state code",
+            "in": "query",
+            "name": "stateOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Descriptionof state",
+            "in": "query",
+            "name": "stateOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "3 Character country code",
+            "in": "query",
+            "name": "countryOfIncorporationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of country",
+            "in": "query",
+            "name": "countryOfIncorporationDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code",
+            "in": "query",
+            "name": "naicsCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Naics code",
+            "in": "query",
+            "name": "naicsDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "6 Characters NAICS code(with small business - Y)",
+            "in": "query",
+            "name": "naicsLimitedSB",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "4 Characters PSC code",
+            "in": "query",
+            "name": "pscCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of PSC code",
+            "in": "query",
+            "name": "pscDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served state, 2 character code",
+            "in": "query",
+            "name": "servedDisasterStateCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served state",
+            "in": "query",
+            "name": "servedDisasterStateName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served county code",
+            "in": "query",
+            "name": "servedDisasterCountyCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of Disaster relief served county",
+            "in": "query",
+            "name": "servedDisasterCountyName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disaster relief served MSA",
+            "in": "query",
+            "name": "servedDisasterMSA",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A two character code or null ",
+            "in": "query",
+            "name": "sbaBusinessTypeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Description of SBa Business Type code",
+            "in": "query",
+            "name": "sbaBusinessTypeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "entityInformation, coreData, assertions, repsAndCerts, mandatoryPOCs, optionalPOCs",
+            "in": "query",
+            "name": "includeSections",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Q paramter for Search Operations",
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "page",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "record limit per page",
+            "in": "query",
+            "name": "size",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable values JSON and CSV",
+            "in": "query",
+            "name": "format",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "emailId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "in": "query",
+            "name": "sortOrder",
+            "required": false,
+            "type": "ref"
+          },
+          {
+            "in": "query",
+            "name": "isActive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "naicsUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "pscUI",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "organizationId",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Acceptable EDI values are Yes/No",
+            "in": "query",
+            "name": "edi",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Code",
+            "in": "query",
+            "name": "companySecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Code",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Company Security Level Description",
+            "in": "query",
+            "name": "companySecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Highest Employee Security Level Description",
+            "in": "query",
+            "name": "highestEmployeeSecurityLevelDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier DUNS- 9 digit value",
+            "in": "query",
+            "name": "ultimateParentUEIDUNS",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Ultimate Parent Unique Entity Identifier SAM- 12 digit value (This will replace ultimateParentUEIDUNS)",
+            "in": "query",
+            "name": "ultimateParentUEISAM",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Code",
+            "in": "query",
+            "name": "agencyBusinessPurposeCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Business Purpose Description",
+            "in": "query",
+            "name": "agencyBusinessPurposeDesc",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Determines Sensitivity Level of Data",
+            "in": "query",
+            "name": "sensitivity",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Routing Number",
+            "in": "query",
+            "name": "routingNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Bank Name",
+            "in": "query",
+            "name": "bankName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Account Number",
+            "in": "query",
+            "name": "accountNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "EFT Waiver Flag",
+            "in": "query",
+            "name": "eftWaiverFlag",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Agency Location Code",
+            "in": "query",
+            "name": "agencyLocationCode",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Disbursing Office Symbol",
+            "in": "query",
+            "name": "disbursingOfficeSymbol",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Name",
+            "in": "query",
+            "name": "taxpayerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Taxpayer Identification Number",
+            "in": "query",
+            "name": "taxpayerIdentificationNumber",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "proceedingFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "in": "query",
+            "name": "execCompensationFlag",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Disaster Response participant flag",
+            "in": "query",
+            "name": "isDisasterResponseParticipant",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "activationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "expirationDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "createDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "country",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "classification",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "SAM Registered",
+            "in": "query",
+            "name": "samRegistered",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "registrationExpirationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "A single Date or Date range in the format MM/DD/YYYY",
+            "in": "query",
+            "name": "ueiCreationDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "1 character code (A or E)",
+            "in": "query",
+            "name": "registrationStatus",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "api_key",
+            "in": "query",
+            "name": "api_key",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully retrieved list"
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "You are not authorized to view the resource"
+          },
+          "403": {
+            "description": "Accessing the resource you were trying to reach is forbidden"
+          },
+          "404": {
+            "description": "The resource you were trying to reach is not found"
+          }
+        },
+        "tags": [
+          "entity-management-controller-v-3"
+        ],
+        "operationId": "getEntityManagementDataUsingPOST_2",
+        "summary": " get Entity Management Details"
+      }
+    }
+  },
+  "tags": [
+    {
+      "description": "Entity Management Controller V 2",
+      "name": "entity-management-controller-v-2"
+    },
+    {
+      "description": "Entity Management Controller V 3",
+      "name": "entity-management-controller-v-3"
+    },
+    {
+      "description": "Entity Management Controller",
+      "name": "entity-management-controller"
+    },
+    {
+      "description": "Operations pertaining to Entity Management Data",
+      "name": "entity-management-extract-controller"
+    }
+  ]
+}
