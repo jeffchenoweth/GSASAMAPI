@@ -8,7 +8,7 @@
     "title": "Entity Management Rest API",
     "version": "0.1.0"
   },
-  "basePath": "/api-alpha.sam.gov/",
+  "basePath": "/api.sam.gov/",
   "paths": {
     "/sam/v1/emr-data": {
       "get": {
